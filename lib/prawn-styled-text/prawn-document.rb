@@ -41,8 +41,8 @@ Prawn::Document.class_eval do
         move_down(margin_top) if margin_top > 0
         move_up(-margin_top) if margin_top < 0
         margin_left = options.delete(:'margin-left').to_i
-        extra_options[:margin_left] = margin_left if margin_left.positive?
-        if !text_options[:leading] && (leading = options.delete(:'line-height').to_i).positive?
+        extra_options[:margin_left] = margin_left if margin_left > 0
+        if !text_options[:leading] && (leading = options.delete(:'line-height').to_i) > 0
           text_options[:leading] = leading
         end
         text_options[:mode] = options[:mode].to_sym if options[:mode]
@@ -68,7 +68,7 @@ Prawn::Document.class_eval do
           end
           if options[:'image-position']
             pos = options[:'image-position'].to_i
-            image_options[:position] = pos.positive? ? pos : options[:'image-position']
+            image_options[:position] = pos > 0 ? pos : options[:'image-position']
           end
           image_options[:width]  = options[:width]  if options[:width]
           image_options[:height] = options[:height] if options[:height]
