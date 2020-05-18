@@ -35,7 +35,8 @@ Prawn::Document.class_eval do
       if type == :text_node
         text_options[:align] = options[:'text-align'].to_sym if options[:'text-align']
         margin_top = options.delete( :'margin-top' ).to_i
-        self.move_down( margin_top ) if margin_top > 0
+        self.move_down(margin_top) if margin_top > 0
+        self.move_up(-margin_top) if margin_top < 0
         margin_left = options.delete( :'margin-left' ).to_i
         extra_options[:margin_left] = margin_left if margin_left > 0
         if !text_options[:leading] && ( leading = options.delete( :'line-height' ).to_i ) > 0
