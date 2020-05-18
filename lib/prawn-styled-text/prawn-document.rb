@@ -38,9 +38,7 @@ Prawn::Document.class_eval do
         self.move_down(margin_top) if margin_top > 0
         self.move_up(-margin_top) if margin_top < 0
         margin_left = options.delete( :'margin-left' ).to_i
-        margin_right = options.delete( :'margin-right' ).to_i
         extra_options[:margin_left] = margin_left if margin_left > 0
-        extra_options[:margin_right] = margin_right if margin_right > 0
         if !text_options[:leading] && ( leading = options.delete( :'line-height' ).to_i ) > 0
           text_options[:leading] = leading
         end
